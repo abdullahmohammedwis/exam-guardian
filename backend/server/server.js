@@ -30,6 +30,9 @@ function startServer() {
   const authenticationRoutes = require('./routes/authentication');
   app.use('/auth', authenticationRoutes);
 
+  const userRoutes = require('./routes/user');
+  app.use('/user', userRoutes);
+
   app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
   });

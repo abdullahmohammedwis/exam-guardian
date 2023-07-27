@@ -10,7 +10,7 @@ const App = () => {
     <BrowserRouter>
     
       <AuthGuard>
-      <Navbar />
+      <Navbar/>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
