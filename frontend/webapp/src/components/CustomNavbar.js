@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import Cookies from 'js-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../images/lsbu_logo_white.png'
 import '../assets/Navbar.css'
-
+import { useAuth } from '../utils/AuthContext'
 const CustomNavbar = () => {
-  const isLoggedIn = !!Cookies.get('jwtToken');
+  const { isLoggedIn, handleLogout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    handleLogout();
+    navigate('/login');
+  };
 
   return (
     <Navbar className="navbar-container">
@@ -27,7 +35,7 @@ const CustomNavbar = () => {
               </Nav.Link>
           </Nav>
           <Nav className="ms-auto">
-              <Nav.Link as={Link} to="/login">
+              <Nav.Link as={Link} to="/login" onClick={handleLogout}>
                  <Button type="button" variant="danger"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;Logout</Button>
               </Nav.Link>
           </Nav>

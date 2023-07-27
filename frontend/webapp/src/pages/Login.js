@@ -3,23 +3,61 @@ import { Container, Form, Button,Card } from 'react-bootstrap';
 import toast, { Toaster } from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../utils/AuthContext'
+import axios from 'axios';
 import '../assets/Login.css'
+import ENDPOINT_URL from '../utils/variables';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate()
+  const { isLoggedIn, handleLogin } = useAuth();
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const handleSubmit = (event) => {
-    setIsLoading(true);
+  const handleSubmit = async (event) => {
     event.preventDefault();
-  }
+    setIsLoading(true);
+  
+    let response; // Declare response variable in the outer scope
+  
+    try {
+      response = await axios.post(`${ENDPOINT_URL}/auth/login`, {
+        email,
+        password,
+      });
+  
+      const data = response.data;
+      const status = response.status;
+      console.log(status);
+      if (status === 200) {
+        handleLogin(data.token);
+        navigate('/');
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        // Display the error message if login fails
+        const data = error.response.data;
+        setError(data.error || 'Authentication failed');
+  
+        // Show an error toast message
+        toast.error('Login Failed: Invalid credentials');
+      } else {
+        console.error('Error during login:', error);
+        setError('Failed to login. Please try again later.');
+      }
+    }
+  
+    setIsLoading(false);
+  };
+  
+  
 
   return (
     <>
@@ -39,7 +77,7 @@ const Login = () => {
                   id="username"
                   value={email}
                   onChange={event => setEmail(event.target.value)}
-                  required placeholder="E.g. email@company.com"
+                  required placeholder="Your Email e.g. email@company.com"
                 />
               </Form.Group>
               <Form.Group className="form-label" controlId="formBasicPassword">
@@ -51,6 +89,7 @@ const Login = () => {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                   required
+                  placeholder="Your Password"
                 />
                 <Button type="button" className="btn btn-link p-0 hidden-password" onClick={togglePasswordVisibility}>
                   <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
@@ -58,11 +97,11 @@ const Login = () => {
               </Form.Group>
               
               {!isLoading ? (
-                  <Button className='ar-btn ar-btn-group ar-btn-secondary login-button' type="submit">
+                  <Button variant='primary' className='login-button' type="submit">
                     LOG IN
                   </Button>
               ):(
-                <Button disabled className='ar-btn ar-btn-group ar-btn-secondary login-button' type="submit">
+                <Button disabled className='login-button' type="submit">
                   LOADING...
                 </Button>
               )}
@@ -73,11 +112,9 @@ const Login = () => {
           toastOptions={{
             success: {
             className: 'ar-toast-success',
-            position:'bottom-left'
             },
             error:{
               className:'ar-toast-error',
-              position:'bottom-left'
             }
           }}
         />

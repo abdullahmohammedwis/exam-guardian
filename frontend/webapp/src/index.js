@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import GoogleFontLoader from 'react-google-font-loader';
-
+import { AuthProvider } from './utils/AuthContext';
 const fontConfig = {
   fonts: [
     {
@@ -17,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <>
     <GoogleFontLoader fonts={fontConfig.fonts} />
     <React.StrictMode>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </React.StrictMode>
   </>
 );

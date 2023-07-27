@@ -25,7 +25,7 @@ function authenticateToken(req, res, next) {
 // Authentication routes
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
-  
+    console.log('Login Request: ' + email + ',' + password)
     try {
       // Find the user in the database by their email
       const user = await User.findOne({ email });
@@ -33,6 +33,7 @@ router.post('/login', async (req, res) => {
       if (!user || user.password !== password) {
         // Authentication failed
         res.status(401).json({ error: 'Authentication failed' });
+        console.log('Response: Invalid User/Pass')
         return;
       }
   
@@ -43,6 +44,7 @@ router.post('/login', async (req, res) => {
       res.json({ token });
     } catch (error) {
       console.error(error);
+      console.log('Response: ' + 'Internal server error')
       res.status(500).json({ error: 'Internal server error' });
     }
 });
