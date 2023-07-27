@@ -1,11 +1,22 @@
 import React from 'react';
-import styles from './assets/App.module.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Navbar from './components/CustomNavbar';
+import AuthGuard from './utils/AuthGuard';
 
 const App = () => {
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Hello, React with SCSS!</h1>
-    </div>
+    <BrowserRouter>
+    
+      <AuthGuard>
+      <Navbar />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </AuthGuard>
+    </BrowserRouter>
   );
 };
 

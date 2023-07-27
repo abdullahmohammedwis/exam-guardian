@@ -1,0 +1,80 @@
+@import "./variables.css";
+
+:root {
+  --input-width: 360px;
+}
+  .body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Styles for .alert-container */
+  .alert-container {
+    background: var(--error-message-background) !important;
+    font-size: 13px;
+  }
+  
+  .form-label {
+    font-size: 13px;
+  }
+  
+  .form-label input {
+    padding: 10px 15px;
+    font-size: 13px;
+    width: var(--input-width);
+  }
+  
+  .form-label input::placeholder {
+    font-style: italic;
+  }
+  
+  .form-label .hidden-password {
+    z-index: 1;
+    position: relative;
+    bottom: 30px;
+    left: calc(var(--input-width) - 30px);
+  }
+  
+  .form-label .hidden-password:hover {
+    background: transparent;
+  }
+  
+  /* Styles for .login-container */
+  .login-container {
+    background-color: var(--login-bg);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 36px;
+    align-items: center;
+  }
+  
+  /* Styles for .heading_login */
+  .heading_login {
+    text-align: center;
+  }
+  
+  .heading_login h1 {
+    font-weight: 500;
+    font-size: 24px;
+  }
+  
+  .heading_login p {
+    font-size: 16px;
+    margin-top: -8px;
+  }
+  
+  /* Styles for .login-card */
+  .login-card {
+    margin-top: 23px;
+    padding: 10px 5px;
+  }
+  
+  /* Styles for .login-button */
+  .login-button {
+    width: var(--input-width);
+    margin-top: 16px;
+    margin-left: 2px;
+  }
+  
