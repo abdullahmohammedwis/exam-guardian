@@ -1,0 +1,20 @@
+@import "./variables.css";
+
+.navbar-container{
+    background-color: var(--dark-black);
+    color: white;
+}
+
+.navbar-container img{
+    width: 175px;
+    height: 75px;
+    margin-right: 3rem;
+}
+
+.navbar-container a{
+    font-size: 20px;
+    margin-left: 10px;
+    text-decoration: none;
+    color: var(--white);
+}
+

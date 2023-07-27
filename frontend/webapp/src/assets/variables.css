@@ -1,0 +1,40 @@
+:root {
+    --route-bg: #F3FAFF;
+    --route-title: #475565;
+
+    --dashboard-bg: #dff0ff;
+    --dashboard-dark: #1C2C3F;
+    --dashboard-dark-grey: #8D959F;
+    --dashboard-primary: #348AF7;
+    --login-bg: #e6f4ff;
+
+    --theme-grey: #eeeeee;
+    --theme-middle-grey: #ccc;
+    --theme-red: #ff4e4c;
+    --theme-middle-grey-text: #4C4C4C;
+    --shadow: rgba(0, 0, 0, 0.1);
+
+    --white: #fff;
+    --red: #FF0000;
+    --dark-black: #000000;
+
+    --primary: #008BF8;
+    --btn-primary: --primary;
+    --btn-primary-hover: #60B9FF;
+    --btn-sec: #00d494;
+    --btn-sec-hover: #50F8C6;
+
+    --page-bg: #ecf6ff;
+
+    --success-alert-bg: #dff0d8;
+    --success-alert-color: #3c763d;
+    --success-alert-border: rgba(60, 118, 61, 0.8);
+
+    --warning-alert-color: #8a6d3b;
+    --warning-alert-bg: #fcf8e3;
+    --warning-alert-border: #faebcc;
+
+    --error-message-text: #b15452;
+    --error-message-background: #f2dede;
+    --error-message-border: #ebccd1;
+  }
