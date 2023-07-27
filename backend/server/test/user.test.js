@@ -7,7 +7,7 @@ describe('Authentication API', () => {
   beforeAll(async () => {
     // Wait for the server to connect to MongoDB before proceeding
     await new Promise((resolve) => {
-      const maxAttempts = 20; // Number of attempts to check the connection status
+      const maxAttempts = 50; // Number of attempts to check the connection status
       let attempts = 0;
 
       const checkConnection = () => {
@@ -19,7 +19,7 @@ describe('Authentication API', () => {
             // If maximum attempts reached and still not connected, fail the test
             throw new Error('Failed to connect to MongoDB');
           }
-          setTimeout(checkConnection, 1000); // Retry after 1 second
+          setTimeout(checkConnection, 2000); // Retry after 2 second
         }
       };
 
@@ -53,10 +53,12 @@ describe('Authentication API', () => {
       expect(response.body).toHaveProperty('error', 'Authentication failed');
     });
   });
-  
-  afterAll(async () => {
+
+  afterAll((done) => {
     // Close the server connection here
-    await app.close();
+    const server = app.listen(0, () => {
+      server.close(done);
+    });
   });
 
 });
