@@ -10,7 +10,7 @@ import '../assets/Navbar.css'
 
 const CustomNavbar = () => {
   const isLoggedIn = !!Cookies.get('jwtToken');
-  
+
   return (
     <Navbar className="navbar-container">
       <Container fluid>
