@@ -53,5 +53,10 @@ describe('Authentication API', () => {
       expect(response.body).toHaveProperty('error', 'Authentication failed');
     });
   });
+  
+  afterAll(async () => {
+    // Close the server connection here
+    await app.close();
+  });
 
 });
