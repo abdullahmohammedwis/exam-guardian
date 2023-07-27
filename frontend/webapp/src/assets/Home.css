@@ -1,0 +1,88 @@
+@import "./variables.css";
+
+
+.home-body {
+    height: 100vh;
+    background-color: var(--login-bg);
+  }
+
+  .heading-home h1{
+    padding-top: 3rem;
+    text-align:center ;
+    font-weight: 700;
+  }
+
+  .heading-home p{
+    text-align:center ;
+    
+  }
+.home-container {
+    padding: 5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .home-card {
+    width: 340px;
+    margin: 2rem 4rem;
+    height: 370px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+  }
+
+  .home-card:hover{
+    transform: scale(1.06) translateY(-5px);
+    transition: transform 0.5s;
+  }
+
+  .home-card-img {
+    height: 150px;
+    
+  }
+
+  .home-card h3{
+    font-weight: 700;
+  }
+
+  .home-card:hover{
+    color: var(--primary);
+  }
+
+  .home-card span{
+    margin-left: 5px;
+  }
+
+  .home-card p{
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .home-card-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button-primary{
+    background-color: var(--btn-sec);
+    border-color: var(--btn-sec);
+    font-weight: 700;
+  }
+
+  .button-primary:hover{
+    background-color: var(--btn-sec-hover);
+    border-color: var(--btn-sec-hover);
+    font-weight: 700;
+  }
+  .empty-card{
+    width: 340px;
+    margin: 2rem 4rem;
+    height: 370px;
+    background-color: transparent;
+    border: none;
+  }
+
+

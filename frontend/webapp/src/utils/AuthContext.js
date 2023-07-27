@@ -1,6 +1,8 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import Cookies from 'js-cookie';
 import toast, { Toaster } from 'react-hot-toast';
+import ENDPOINT_URL from '../utils/variables';
+import axios from 'axios';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -13,14 +15,34 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const handleLogin = (token) => {
+    // Store the JWT token in Cookies
     Cookies.set('jwt', token, { expires: 1, sameSite: 'strict' });
-    toast.success('Successfully Logged In');
-    setisLoggedIn(true);
+  
+    // Make an API call to get user details
+    axios.get(`${ENDPOINT_URL}/user/user-details`, {
+      headers: {
+        'Authorization': Cookies.get('jwt')
+      }
+    })
+    .then(response => {
+      console.log(response.data.user)
+      sessionStorage.setItem('userDetails', JSON.stringify(response.data.user));
+      // Notify user of successful login
+      toast.success('Successfully Logged In');
+  
+      // Update isLoggedIn state
+      setisLoggedIn(true);
+    })
+    .catch(error => {
+      console.error(error);
+      // Handle any error scenarios for login
+    });
   };
 
   const handleLogout = () => {
     Cookies.remove('jwt');
     setisLoggedIn(false);
+    sessionStorage.clear();
     toast.success("Logged Out Successfully");
   };
 

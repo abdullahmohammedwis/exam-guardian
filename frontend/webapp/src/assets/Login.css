@@ -70,11 +70,18 @@
     margin-top: 23px;
     padding: 10px 5px;
   }
-  
-  /* Styles for .login-button */
+
   .login-button {
     width: var(--input-width);
+    background-color: var(--btn-sec);
+    border-color: var(--btn-sec);
     margin-top: 16px;
     margin-left: 2px;
+    font-weight: 700;
   }
   
+  .login-button:hover{
+    background-color: var(--btn-sec-hover);
+    border-color: var(--btn-sec-hover);
+    font-weight: 700;
+  }

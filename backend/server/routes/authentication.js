@@ -3,24 +3,8 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('../models/userSchema');
+const authenticateToken = require('./token-authentication');
 const secretKey = process.env.SECRET_KEY;
-
-// Middleware to verify JWT token
-function authenticateToken(req, res, next) {
-    const token = req.header('Authorization');
-    console.log(token)
-    if (!token) {
-      return res.sendStatus(401);
-    }
-  
-    jwt.verify(token, secretKey, (err, decodedToken) => {
-      if (err) {
-        return res.sendStatus(403);
-      }
-      req.user = decodedToken;
-      next();
-    });
-  }
 
 // Authentication routes
 router.post('/login', async (req, res) => {

@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
-import Cookies from 'js-cookie';
+import { faSignOutAlt, faHome, faUser} from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../images/lsbu_logo_white.png'
 import '../assets/Navbar.css'
 import { useAuth } from '../utils/AuthContext'
+
 const CustomNavbar = () => {
   const { isLoggedIn, handleLogout } = useAuth();
-  const navigate = useNavigate();
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState('');
 
-  const handleLogoutClick = () => {
-    handleLogout();
-    navigate('/login');
-  };
+  // Update the active link whenever the location changes
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location.pathname]);
 
   return (
     <Navbar className="navbar-container">
@@ -30,12 +29,24 @@ const CustomNavbar = () => {
         {isLoggedIn && (
           <>
           <Nav className="me-auto">
-              <Nav.Link as={Link} to="/login">
-                <Link to="/"><FontAwesomeIcon icon={faHome} /><a>Home</a></Link>
+              <Nav.Link
+                as={Link}
+                to="/"
+                className={activeLink === '/' ? 'active' : ''}
+              >
+                <FontAwesomeIcon icon={faHome} /><a>Home</a>
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/edit-profile"
+                className={activeLink === '/edit-profile' ? 'active' : ''}
+              >
+                <FontAwesomeIcon icon={faUser} /><a>Edit Profile</a>
               </Nav.Link>
           </Nav>
           <Nav className="ms-auto">
               <Nav.Link as={Link} to="/login" onClick={handleLogout}>
+                  
                  <Button type="button" variant="danger"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;Logout</Button>
               </Nav.Link>
           </Nav>
