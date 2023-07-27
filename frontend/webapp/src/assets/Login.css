@@ -1,7 +1,9 @@
 @import "./variables.css";
 
+:root {
+  --input-width: 360px;
+}
   .body {
-    font-family: "your-font-family-bold", Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,23 +11,18 @@
   
   /* Styles for .alert-container */
   .alert-container {
-    font-family: "your-font-family-light", Arial, sans-serif;
-    background: #your-error-message-background !important;
+    background: var(--error-message-background) !important;
     font-size: 13px;
   }
   
-  /* Input styles */
-  $input-width: 360px;
-  
   .form-label {
     font-size: 13px;
-    font-family: "your-font-family-light", Arial, sans-serif;
   }
   
   .form-label input {
     padding: 10px 15px;
     font-size: 13px;
-    width: $input-width;
+    width: var(--input-width);
   }
   
   .form-label input::placeholder {
@@ -36,7 +33,7 @@
     z-index: 1;
     position: relative;
     bottom: 30px;
-    left: calc($input-width - 30px);
+    left: calc(var(--input-width) - 30px);
   }
   
   .form-label .hidden-password:hover {
@@ -45,7 +42,7 @@
   
   /* Styles for .login-container */
   .login-container {
-    background-color: #your-login-bg;
+    background-color: var(--login-bg);
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -65,7 +62,6 @@
   
   .heading_login p {
     font-size: 16px;
-    font-family: "your-font-family-light", Arial, sans-serif;
     margin-top: -8px;
   }
   
@@ -77,7 +73,7 @@
   
   /* Styles for .login-button */
   .login-button {
-    width: $input-width;
+    width: var(--input-width);
     margin-top: 16px;
     margin-left: 2px;
   }
