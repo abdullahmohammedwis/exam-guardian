@@ -1,5 +1,4 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('../models/userSchema');
 const authenticateToken = require('./token-authentication');
@@ -8,7 +7,7 @@ router.get('/user-details', authenticateToken, async (req, res) => {
     try {
       // Get the user ID from the decoded token
       const userId = req.user.data._id;
-  
+      console.log(userId)
       // Find the user in the database by their ID
       const user = await User.findById(userId);
   
@@ -16,7 +15,7 @@ router.get('/user-details', authenticateToken, async (req, res) => {
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-  
+      
       // Return the user details
       res.json({ user });
     } catch (error) {

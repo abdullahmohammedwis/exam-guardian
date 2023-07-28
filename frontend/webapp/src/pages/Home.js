@@ -9,9 +9,7 @@ import examLogsImage from '../images/exam_logs.jpg';
 import examOngoingImage from '../images/exam_ongoing.jpg';
 import manageUsersImage from '../images/manage_users.png';
 import { useAuth } from '../utils/AuthContext'
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import ENDPOINT_URL from '../utils/variables';
+import HomeCard from '../components/HomeCard';
 
 const Home = () => {
   const { isLoggedIn } = useAuth();
@@ -32,54 +30,27 @@ const Home = () => {
         </Container>
         <Container className='home-container'>
         <div>
-          <Card className='home-card'>
-            <Card.Img className='home-card-img' src={scheduleExamImage} alt="Schedule Exam" />
-            <Card.Body className='home-card-body'>
-              <Card.Title><h3>Schedule an Exam</h3></Card.Title>
-              <Card.Text><p>Upcoming Exams to be Scheduled</p></Card.Text>
-              <Button className='button-primary' as={Link} to="/schedule-exam">
-                <FontAwesomeIcon icon={faCalendarPlus} /> <span>Schedule Now</span>
-              </Button>
-            </Card.Body>
-          </Card>
+            <HomeCard
+            imageSrc={scheduleExamImage} title="Schedule an Exam" description="Upcoming Exams to be Scheduled"
+            buttonText={{ icon: faCalendarPlus, text: 'Schedule Now' }}
+            linkTo="/schedule-exam"/>
         </div>
         <div>
-          <Card className='home-card'>
-            <Card.Img className='home-card-img' src={examLogsImage} alt="Exam Logs" />
-            <Card.Body className='home-card-body'>
-              <Card.Title><h3>Exam Logs</h3></Card.Title>
-              <Card.Text><p>View Logs of Exams Conducted</p></Card.Text>
-              <Button className='button-primary' as={Link} to="/exam-logs">
-                <FontAwesomeIcon icon={faClipboardList} /> <span>View Exam Logs</span>
-              </Button>
-            </Card.Body>
-          </Card>
+            <HomeCard imageSrc={examLogsImage} title="Exam Logs" description="View Logs of Exams Conducted" 
+            buttonText={{ icon: faClipboardList, text: 'View Exam Logs' }}
+            linkTo="/exam-logs"/>
         </div>
         <div>
-        <Card className='home-card'>
-            <Card.Img className='home-card-img' src={examOngoingImage} alt="Ongoing Exams" />
-            <Card.Body className='home-card-body'>
-              <Card.Title><h3>Ongoing Exams</h3></Card.Title>
-              <Card.Text><p>View Exams Currently in Progress</p></Card.Text>
-              <Button className='button-primary' as={Link} to="/ongoing-exams">
-                <FontAwesomeIcon icon={faClipboardList} /> <span>View Ongoing Exams</span>
-              </Button>
-            </Card.Body>
-          </Card>
+        <HomeCard imageSrc={examOngoingImage} title="Ongoing Exams" description="View Exams Currently in Progress" 
+            buttonText={{ icon: faClipboardList, text: 'View Ongoing Exams' }}
+            linkTo="/ongoing-exams"/>
         </div>
         <div>
         {userData.isAdmin ? (
           <>
-          <Card className='home-card'>
-            <Card.Img className='home-card-img' src={manageUsersImage} alt="Manage Users" />
-            <Card.Body className='home-card-body'>
-              <Card.Title><h3>Manage Users</h3></Card.Title>
-              <Card.Text><p>Manage Users of ExamGuardian</p></Card.Text>
-              <Button className='button-primary' as={Link} to="/manage-users">
-                <FontAwesomeIcon icon={faUserCog} /> <span>Manage Users</span>
-              </Button>
-            </Card.Body>
-          </Card>
+          <HomeCard imageSrc={manageUsersImage} title="Manage Users" description="Manage Users of ExamGuardian" 
+            buttonText={{ icon: faUserCog, text: 'Manage Users' }}
+            linkTo="/manage-users"/>
           </>
           ):(
             null

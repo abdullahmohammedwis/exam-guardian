@@ -1,9 +1,10 @@
 const request = require('supertest');
 const app = require('../server'); // Update the path to your server.js file
+const jwt = require('jsonwebtoken');
 
+let token;
 describe('Authentication API', () => {
-  let token; // Token to be used for authenticated requests
-
+  
   beforeAll(async () => {
     // Wait for the server to connect to MongoDB before proceeding
     await new Promise((resolve) => {
@@ -61,4 +62,35 @@ describe('Authentication API', () => {
     });
   });
 
+});
+
+const user = {
+  __v: 0,
+  _id: '64c2398803020128a770c7f6',
+  fullName: 'Mohammed Ismail',
+  email: 'admin@lsbu.com',
+  password: '1234567',
+  isAdmin: true,
+};
+
+describe('User Details API', () => {
+  it('should return the logged-in user details', async () => {
+    const response = await request(app)
+      .get('/user/user-details')
+      .set('Authorization', `${token}`); // Include the JWT token in the request header
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty('user');
+    expect(response.body.user).toEqual(user);
+  });
+
+  it('should return 403 if jwt token is invalid', async () => {
+    // Create a JWT token with invalid user data
+    const invalidUserToken = jwt.sign({ invalid_user: { data: user } }, 'your_secret_key');
+    console.log('invalidtoken' + invalidUserToken)
+    const response = await request(app)
+      .get('/user/user-details')
+      .set('Authorization', `${invalidUserToken}`); // Include the JWT token in the request header
+
+    expect(response.status).toBe(403);
+  });
 });
