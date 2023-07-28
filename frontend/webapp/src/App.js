@@ -2,9 +2,11 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import ScheduleExam from './pages/ScheduleExam';
 import Navbar from './components/CustomNavbar';
 import AuthGuard from './utils/AuthGuard';
-
+import AlertTemplate from './pages/AlertTemplate';
+import InstructionTemplate from './pages/InstructionTemplate';
 const App = () => {
   return (
     <BrowserRouter>
@@ -14,6 +16,9 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
+          <Route path="/schedule-exam" element={<ScheduleExam />} />
+          <Route path="/manage-alert" element={<AlertTemplate />} />
+          <Route path="/manage-instruction" element={<InstructionTemplate />} />
         </Routes>
       </AuthGuard>
     </BrowserRouter>

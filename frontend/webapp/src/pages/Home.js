@@ -1,7 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Card, Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import { Container} from 'react-bootstrap';
 import { faCalendarPlus, faClipboardList, faUserCog } from '@fortawesome/free-solid-svg-icons'; // Import the required icons
 import '../assets/Home.css';
 import scheduleExamImage from '../images/schedule_exam.png';
@@ -25,7 +23,7 @@ const Home = () => {
     <>
       <Container fluid className='home-body'>
         <Container className='heading-home'>
-          <h1>Welcome Dear, {userData.fullName}</h1>
+          <h1>Welcome Dear, {userData.fullName || ''}</h1>
           <p>Hope You Are Doing Great!</p>
         </Container>
         <Container className='home-container'>
