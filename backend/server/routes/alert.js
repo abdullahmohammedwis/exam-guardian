@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 // Import the Alert model
 const Alert = require('../models/alertSchema');
-
+const authenticateToken = require('./token-authentication');
 // Set up the multer storage configuration to save the uploaded files
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -21,7 +21,7 @@ const upload = multer({ storage });
 const fs = require('fs');
 
 // Route to get the alerts list
-router.get('/get-alerts', async (req, res) => {
+router.get('/get-alerts', authenticateToken, async (req, res) => {
   try {
     // Fetch all alerts from the database
     const alerts = await Alert.find();
@@ -51,7 +51,7 @@ router.get('/get-alerts', async (req, res) => {
 
 
 // Route to add a new alert
-router.post('/add', upload.single('alertLogo'), async (req, res) => {
+router.post('/add', authenticateToken, upload.single('alertLogo'), async (req, res) => {
     try {
       const { alertName, alertDescription, alertStartTime, alertEndTime, alertType } = req.body;
       const alertLogo = req.file.filename; // The filename saved by multer
@@ -72,6 +72,39 @@ router.post('/add', upload.single('alertLogo'), async (req, res) => {
       res.json(savedAlert); // Send the saved alert as JSON response
     } catch (error) {
       console.error('Error adding alert:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
+  router.put('/update/:alertId', authenticateToken, upload.single('alertLogo'), async (req, res) => {
+    try {
+      const { alertName, alertDescription, alertStartTime, alertEndTime, alertType } = req.body;
+      const alertId = req.params.alertId;
+  
+      // Get the existing alert from the database
+      const existingAlert = await Alert.findById(alertId);
+      if (!existingAlert) {
+        return res.status(404).json({ error: 'Alert not found' });
+      }
+  
+      // Update the alert properties
+      existingAlert.alertName = alertName;
+      existingAlert.alertDescription = alertDescription;
+      existingAlert.alertStartTime = alertStartTime;
+      existingAlert.alertEndTime = alertEndTime;
+      existingAlert.alertType = alertType;
+  
+      // Check if a new logo is uploaded and update the logo file name accordingly
+      if (req.file) {
+        existingAlert.alertLogo = req.file.filename;
+      }
+  
+      // Save the updated alert to the database
+      const updatedAlert = await existingAlert.save();
+  
+      res.json(updatedAlert); // Send the updated alert as JSON response
+    } catch (error) {
+      console.error('Error updating alert:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });

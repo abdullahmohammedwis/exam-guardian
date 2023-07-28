@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Exam = require('../models/examSchema');
-
-router.post('/schedule-exam', async (req, res) => {
+const authenticateToken = require('./token-authentication');
+router.post('/schedule-exam', authenticateToken, async (req, res) => {
   try {
     const newExam = await Exam.create(req.body);
     res.status(201).json(newExam);

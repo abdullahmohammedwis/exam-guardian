@@ -6,7 +6,7 @@ const authenticateToken = require('./token-authentication');
 const Instruction = require('../models/instructionSchema');
 
 // Route to get all instructions
-router.get('/get-instructions', async (req, res) => {
+router.get('/get-instructions', authenticateToken,async (req, res) => {
   try {
     // Fetch all instructions from the database
     const instructions = await Instruction.find();

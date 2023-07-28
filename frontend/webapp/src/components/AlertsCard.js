@@ -3,6 +3,7 @@ import { Form, Container, Card, Row, Col, Button, Modal } from 'react-bootstrap'
 import '../assets/ScheduleExam.css';
 import axios from 'axios';
 import ENDPOINT_URL from '../utils/variables';
+import Cookies from 'js-cookie';
 const AlertsCard = ({ addedAlertsData, onAlertsChange }) => {
 
   const [availableAlerts, setAvailableAlerts] = useState([]);
@@ -61,7 +62,11 @@ const AlertsCard = ({ addedAlertsData, onAlertsChange }) => {
 
   useEffect(() => {
     axios
-      .get(`${ENDPOINT_URL}/alert/get-alerts`)
+      .get(`${ENDPOINT_URL}/alert/get-alerts`, {
+        headers: {
+          'Authorization': Cookies.get('jwt')
+        }
+      })
       .then((response) => {
         setAvailableAlerts(response.data);
       })

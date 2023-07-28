@@ -76,3 +76,36 @@ select {
       select option[disabled]:first-child {
         color: gray;
       }
+
+.alert-card{
+        width: 1290px;
+}
+
+.custom-striped-table tr td {
+          border: none;
+          vertical-align: middle;
+          color: var(--dashboard-dark);
+          
+        }
+      
+      
+.custom-striped-table tr:nth-child(odd) td {
+background-color: var(--route-bg);
+cursor: pointer;
+}
+
+.custom-striped-table tr:nth-child(even) td {
+background-color: #ffffff;
+cursor: pointer;
+}
+      
+      .custom-striped-table tr:hover td {
+        background-color: var(--dashboard-bg);
+        cursor: pointer;
+      }
+      
+      .custom-table-head th {
+        background-color: #388cf4 !important;
+        color: white !important;
+      }
+      

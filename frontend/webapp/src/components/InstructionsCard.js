@@ -3,7 +3,7 @@ import { Form, Container, Card, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import '../assets/ScheduleExam.css';
 import ENDPOINT_URL from '../utils/variables';
-
+import Cookies from 'js-cookie';
 const InstructionsCard = ({ setInstructions }) => {
   const [selectedInstructionTemplate, setSelectedInstructionTemplate] = useState('');
   const [instructionTemplates, setInstructionTemplates] = useState([]);
@@ -17,7 +17,11 @@ const InstructionsCard = ({ setInstructions }) => {
   useEffect(() => {
     // Fetch instruction templates from the API
     axios
-      .get(`${ENDPOINT_URL}/instruction/get-instructions`)
+      .get(`${ENDPOINT_URL}/instruction/get-instructions`, {
+        headers: {
+          'Authorization': Cookies.get('jwt')
+        }
+      })
       .then((response) => {
         setInstructionTemplates(response.data);
       })

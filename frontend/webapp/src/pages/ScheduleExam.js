@@ -1,14 +1,18 @@
 import React, {useState} from 'react'
 import '../assets/ScheduleExam.css';
-import { Container, Card, Row, Col, Form, Button} from 'react-bootstrap';
+import { Container, Card, Row, Col, Form, Button, InputGroup} from 'react-bootstrap';
 import toast, { Toaster } from 'react-hot-toast';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import InstructionsCard from '../components/InstructionsCard';
 import AlertsCard from '../components/AlertsCard';
 import Sidebar from '../components/Sidebar';
 import axios from 'axios';
 import ENDPOINT_URL from '../utils/variables';
+import Cookies from 'js-cookie';
 const ScheduleExam = () => {
 
+    const [examId, setExamId] = useState(null);
     const sidebarMenuItems = [
         { href: '/schedule-exam', name: 'SCHEDULE EXAM', icon: 'info-circle' },
         { href: '/manage-alert', name: 'ALERT TEMPLATES', icon: 'cog' },
@@ -98,9 +102,13 @@ const ScheduleExam = () => {
           };
         // Send the examData using Axios to the API
         axios
-        .post(`${ENDPOINT_URL}/exam/schedule-exam`, dataToSend)
+        .post(`${ENDPOINT_URL}/exam/schedule-exam`, dataToSend, {
+          headers: {
+            'Authorization': Cookies.get('jwt')
+          }
+        })
         .then((response) => {
-          // Handle the response here if needed
+          setExamId(response.data._id);
           toast.success('Exam Scheduled Successfully!');
           console.log('Exam data saved successfully:', response.data);
         })
@@ -113,6 +121,18 @@ const ScheduleExam = () => {
         });
       };
 
+      const handleCopyExamUrl = () => {
+        const examUrl = `http://localhost:3000/exam/${examId}`;
+        navigator.clipboard.writeText(examUrl)
+          .then(() => {
+            toast.success('URL Copied to Clipboard');
+          })
+          .catch((error) => {
+            console.error('Error copying URL to clipboard:', error);
+            toast.error('Failed to copy URL to clipboard');
+          });
+      };
+
   return (
     <>
         <Container fluid className="d-flex p-0">
@@ -123,6 +143,16 @@ const ScheduleExam = () => {
                     <p>Schedule Your Next Exam with Ease!</p>
                     <hr></hr>
                     {error && <Container className="mb-3 text-danger alert alert-danger alert-container">{error}</Container>}
+                    {examId && 
+                    <Form.Group controlId="examId">
+                    <Form.Label>Public Access URL</Form.Label>
+                    <InputGroup style={{width:'500px'}}>
+                      <Form.Control type="text"  value={`http://localhost:3000/examview/${examId}`} disabled />
+                      <InputGroup.Text style={{ cursor: 'pointer' }} onClick={() => handleCopyExamUrl()}>
+                        <FontAwesomeIcon icon={faCopy} />
+                      </InputGroup.Text>
+                    </InputGroup>
+                  </Form.Group>}
                 </Container>
                 
                 <Container className='schedule-container'>
