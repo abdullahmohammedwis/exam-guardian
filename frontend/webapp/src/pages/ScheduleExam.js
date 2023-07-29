@@ -154,9 +154,9 @@ const ScheduleExam = () => {
                     </InputGroup>
                   </Form.Group>}
                 </Container>
-                
+               
                 <Container className='schedule-container'>
-                    <Container >
+                    <Container className='d-flex justify-content-center flex-column align-items-center' >
                         <Row className="mb-0 label">
                             <Col>
                                 <h6>Exam Schedule<span className="text-danger">*</span></h6>
@@ -244,6 +244,7 @@ const ScheduleExam = () => {
                         <AlertsCard addedAlertsData={addedAlertsData} onAlertsChange={handleAddedAlertsChange} />
                     </Row>
                 </Container>
+                
                 <Row className="mt-2 mb-2 d-flex align-items-center justify-content-center sc-button-primary">
                     <Button variant="success" onClick={handleSubmit}><strong>Schedule Exam!</strong></Button>
                 </Row>

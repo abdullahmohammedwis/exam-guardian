@@ -127,7 +127,8 @@ const AlertTemplate = () => {
               <Container className="mb-3 text-danger alert alert-danger alert-container">{error}</Container>
             )}
           </Container>
-          <Container className="schedule-container">
+          <Row className='d-flex justify-content-center flex-column align-items-center'>
+          <Container className=" schedule-container">
             <Container>
               <Row className="mb-0 label">
                 <Col>
@@ -194,6 +195,7 @@ const AlertTemplate = () => {
               </Row>
             </Container>
           </Container>
+          </Row>
         </Container>
         
       </Container>
