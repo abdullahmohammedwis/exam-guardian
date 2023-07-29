@@ -155,8 +155,10 @@ const ScheduleExam = () => {
                   </Form.Group>}
                 </Container>
                
-                <Container className='schedule-container'>
-                    <Container className='d-flex justify-content-center flex-column align-items-center' >
+                <Container className=' d-flex justify-content-around align-items-start schedule-container'>
+                <Container >
+                  </Container>
+                    <Container style={{margin: '0 2rem'}}>
                         <Row className="mb-0 label">
                             <Col>
                                 <h6>Exam Schedule<span className="text-danger">*</span></h6>
@@ -239,7 +241,7 @@ const ScheduleExam = () => {
                         </Card>
                         
                     </Container>
-                    <Row className='d-flex align-items-start'>
+                    <Row className='pl-3 d-flex align-items-start'>
                         <InstructionsCard setInstructions={setInstructions} />
                         <AlertsCard addedAlertsData={addedAlertsData} onAlertsChange={handleAddedAlertsChange} />
                     </Row>
