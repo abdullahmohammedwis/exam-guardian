@@ -12,4 +12,47 @@ router.post('/schedule-exam', authenticateToken, async (req, res) => {
   }
 });
 
+router.get('/get-exam', async (req, res) => {
+  try {
+    const { examid } = req.query;
+
+    // Find the exam by examId in the database
+    const exam = await Exam.findById(examid)
+      .populate('examAlerts.alert') 
+      .populate('examInstructions');
+
+    if (!exam) {
+      return res.status(404).json({ error: 'Exam not found' });
+    }
+
+    res.json(exam); // Send the exam details as JSON response
+  } catch (error) {
+    console.error('Error fetching exam details:', error);
+    res.status(500).json({ error: 'Failed to fetch exam details' });
+  }
+});
+
+router.put('/update-exam-status/:examid', async (req, res) => {
+  try {
+    const { examid } = req.params;
+    
+    // Find the exam by examId in the database
+    const exam = await Exam.findById(examid);
+
+    if (!exam) {
+      return res.status(404).json({ error: 'Exam not found' });
+    }
+
+    // Set isCompleted as true to mark the exam as completed
+    exam.isCompleted = true;
+    await exam.save();
+
+    res.json({ message: 'Exam status updated successfully' });
+  } catch (error) {
+    console.error('Error updating exam status:', error);
+    res.status(500).json({ error: 'Failed to update exam status' });
+  }
+});
+
+
 module.exports = router;

@@ -122,7 +122,7 @@ const ScheduleExam = () => {
       };
 
       const handleCopyExamUrl = () => {
-        const examUrl = `http://localhost:3000/exam/${examId}`;
+        const examUrl = `http://localhost:3000/examview/${examId}`;
         navigator.clipboard.writeText(examUrl)
           .then(() => {
             toast.success('URL Copied to Clipboard');
@@ -146,7 +146,7 @@ const ScheduleExam = () => {
                     {examId && 
                     <Form.Group controlId="examId">
                     <Form.Label>Public Access URL</Form.Label>
-                    <InputGroup style={{width:'500px'}}>
+                    <InputGroup style={{width:'700px'}}>
                       <Form.Control type="text"  value={`http://localhost:3000/examview/${examId}`} disabled />
                       <InputGroup.Text style={{ cursor: 'pointer' }} onClick={() => handleCopyExamUrl()}>
                         <FontAwesomeIcon icon={faCopy} />

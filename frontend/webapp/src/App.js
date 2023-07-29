@@ -8,6 +8,7 @@ import AuthGuard from './utils/AuthGuard';
 import AlertTemplate from './pages/AlertTemplate';
 import InstructionTemplate from './pages/InstructionTemplate';
 import PublicExam from './pages/PublicExam';
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/manage-alert" element={<AlertTemplate />} />
           <Route path="/manage-instruction" element={<InstructionTemplate />} />
           <Route path="/examview/:examId" element={<PublicExam />} />
+          
         </Routes>
       </AuthGuard>
     </BrowserRouter>
