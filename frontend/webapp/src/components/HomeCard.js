@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../assets/Home.css';
 
 const HomeCard = ({ imageSrc, title, description, buttonText, linkTo }) => {
+ 
   return (
     <Card className='home-card'>
       <Card.Img className='home-card-img' src={imageSrc} alt={title} />

@@ -1,0 +1,79 @@
+@import "./variables.css";
+
+.sidebar-container {
+    color: var(--dashboard-dark);
+    position: sticky;
+    top: 10px;
+  }
+  
+  .sidebar-container hr {
+    border: none;
+    border-top: 3px solid var(--dashboard-primary);
+    margin: 1rem 0;
+  }
+  
+  .sidebar-container h5 {
+    font-weight: 700;
+    font-size: 17px;
+    margin: 5px 0;
+    padding: 10px;
+    color: var(--dashboard-dark);
+    border-radius: 5px;
+  }
+  
+  .sidebar-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar-container li {
+    margin: 5px 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar-container li a {
+    text-decoration: none;
+    padding: 10px;
+    color: var(--dashboard-dark);
+    font-weight: 500;
+  }
+  
+  .sidebar-container li a:hover {
+    color: var(--dashboard-primary);
+    transition: color 0.4s ease;
+  }
+  
+  .sidebar-container li:hover {
+    background-color: var(--route-bg);
+    transition: background-color 0.4s ease;
+    cursor: pointer;
+  }
+  
+  .sidebar-container li:hover a {
+    color: var(--dashboard-primary);
+    transition: color 0.4s ease;
+  }
+  
+  .icon-gap {
+    margin-right: 0.5rem;
+  }
+  
+  .selected {
+    background-color: var(--route-bg);
+    cursor: pointer;
+    color: var(--dashboard-primary);
+    font-weight: 600;
+    transition: font-weight 0.4s ease;
+  }
+  
+  .selected a {
+    transition: color 0.4s ease;
+    background-color: transparent;
+  }
+  
+  .selected:hover a {
+    color: var(--dashboard-primary);
+  }
+  

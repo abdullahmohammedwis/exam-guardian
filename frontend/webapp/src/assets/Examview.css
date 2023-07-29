@@ -1,0 +1,23 @@
+.exam-card
+{
+    width: 800px;
+}
+
+.exam-card table {
+    border: none;
+  }
+  
+  .exam-card table th, .table td {
+    border: none;
+  }
+
+  .primary-container {
+    background: var(--primary) !important;
+    font-size: 13px;
+  }
+
+  .exam-alerts-table table td{
+    background: transparent;
+    font-size: 20px;
+    vertical-align: middle;
+  }
