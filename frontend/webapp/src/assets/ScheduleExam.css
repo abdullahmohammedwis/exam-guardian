@@ -1,0 +1,111 @@
+@import "./variables.css";
+
+.alert-container{
+        background: var(--error-message-background) !important;
+        font-size: 13px;
+}
+
+.schedule-container{
+        padding: 2rem 0;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-direction: row;
+        margin: 1rem 0;
+        color: var(--dashboard-dark);
+}
+
+.schedule-container h6{
+        font-weight: 700;
+        font-size: 20px;
+}
+
+.alerts-card h6{
+        text-align: left!important;
+        font-size: 13px;
+}
+.schedule-card{
+        flex: 70%;
+        width: 550px;
+}
+
+.instructions-card{
+        flex: 30%;
+        width: 600px;
+}
+
+.sc-button-danger  button{
+        color: white;
+        background-color: var(--btn-danger);
+        border-color: var(--btn-danger);
+        width: 100px;
+}
+
+.sc-button-danger button:hover{
+        background-color: var(--btn-danger-hover);
+        border-color: var(--btn-danger-hover);
+        transform: scale(1.06);
+        transition: transform 0.5s;
+}
+
+.sc-button-primary button{
+        color: white;
+        background-color: var(--btn-sec);
+        border-color: var(--btn-sec);
+        width: 400px;
+}
+
+.sc-button-primary button:hover{
+        background-color: var(--btn-sec-hover);
+        border-color: var(--btn-sec-hover);
+        transform: scale(1.06);
+        transition: transform 0.5s;
+}
+
+select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: url('data:image/svg+xml;utf8,<svg fill="gray" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>')
+          no-repeat scroll right center transparent;
+        background-size: 20px;
+        padding-right: 30px; /* Add some right padding to avoid overlap with arrow */
+      }
+      
+      /* Optional: Add styles to the placeholder option */
+      select option[disabled]:first-child {
+        color: gray;
+      }
+
+.alert-card{
+        width: 1290px;
+}
+
+.custom-striped-table tr td {
+          border: none;
+          vertical-align: middle;
+          color: var(--dashboard-dark);
+          
+        }
+      
+      
+.custom-striped-table tr:nth-child(odd) td {
+background-color: var(--route-bg);
+cursor: pointer;
+}
+
+.custom-striped-table tr:nth-child(even) td {
+background-color: #ffffff;
+cursor: pointer;
+}
+      
+      .custom-striped-table tr:hover td {
+        background-color: var(--dashboard-bg);
+        cursor: pointer;
+      }
+      
+      .custom-table-head th {
+        background-color: #388cf4 !important;
+        color: white !important;
+      }
+      

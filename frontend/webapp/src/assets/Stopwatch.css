@@ -1,0 +1,11 @@
+/* Add this to your existing CSS file or create a new one for the component */
+@import url(https://db.onlinewebfonts.com/c/d67b65a301477f1b102f7b46473f976e?family=Digital-7+Mono);
+
+  .stopwatch {
+    border-radius: 10px;
+    border: 7px solid rgb(101, 101, 101);
+    font-size: 3rem; /* Adjust font size to your liking */
+    color: #fff; /* White text color */
+    background-color: #333; /* Dark background for the timer */
+    padding: 10px;
+  }
