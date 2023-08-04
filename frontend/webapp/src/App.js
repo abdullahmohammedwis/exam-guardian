@@ -9,6 +9,8 @@ import AlertTemplate from './pages/AlertTemplate';
 import InstructionTemplate from './pages/InstructionTemplate';
 import PublicExam from './pages/PublicExam';
 import ExamLogs from './pages/ExamLogs';
+import OngoingExams from './pages/OngoingExams';
+import ManageUsers from './pages/ManageUsers';
 const App = () => {
   return (
     <BrowserRouter>
@@ -22,6 +24,8 @@ const App = () => {
           <Route path="/manage-instruction" element={<InstructionTemplate />} />
           <Route path="/examview/:examId" element={<PublicExam />} />
           <Route path="/exam-logs" element={<ExamLogs />} />
+          <Route path="/ongoing-exams" element={<OngoingExams />} />
+          <Route path="/manage-users" element={<ManageUsers />} />
         </Routes>
       </AuthGuard>
     </BrowserRouter>
