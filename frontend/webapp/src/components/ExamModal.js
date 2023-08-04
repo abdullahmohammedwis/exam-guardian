@@ -40,7 +40,7 @@ const ExamModal = ({ exam, onClose }) => {
         </div>
         <hr />
         <h5>Exam Issues:</h5>
-        {exam.examIssues >=1 ? (
+        {exam.examIssues.length >=1 ? (
           <ul>
             {exam.examIssues.map((issue, index) => (
               <li key={index}>{issue}</li>
