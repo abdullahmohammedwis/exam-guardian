@@ -55,8 +55,7 @@ const isExamStarted = () => {
 
     // Assuming examDetails.startTime is a valid time in 24-hour format, e.g., "13:30"
     const examStartTime = `${formattedDate}, ${examDetails.startTime}:00`;
-
-    
+    console.log(currentLondonTime + ', ' + examStartTime)
     return currentLondonTime >= examStartTime;
 };
 
@@ -81,12 +80,15 @@ const isExamFinished = () => {
 
 const checkExamStatus = async () => {
     isExamStarted()
+    console.log(isExamStarted())
    // console.log('isExamStarts: ' + isExamStarted() + ', ' + 'isExamEnd: ' + isExamFinished())
     if (!examDetails) return; // Ensure examDetails is available before checking
-    
+   
     if(isExamStarted())
     {
         setexamStatusText('In Progress')
+        
+    
        // console.log('isExamStarts: ' + isExamStarted() + ', ' + 'isExamEnd: ' + isExamFinished())
         if(isExamFinished())
         {

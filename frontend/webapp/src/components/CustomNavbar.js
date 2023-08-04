@@ -36,13 +36,7 @@ const CustomNavbar = () => {
               >
                 <FontAwesomeIcon icon={faHome} /><a>Home</a>
               </Nav.Link>
-              <Nav.Link
-                as={Link}
-                to="/edit-profile"
-                className={activeLink === '/edit-profile' ? 'active' : ''}
-              >
-                <FontAwesomeIcon icon={faUser} /><a>Edit Profile</a>
-              </Nav.Link>
+              
           </Nav>
           <Nav className="ms-auto">
               <Nav.Link as={Link} to="/login" onClick={handleLogout}>
